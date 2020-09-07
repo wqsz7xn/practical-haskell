@@ -1,3 +1,5 @@
+{-# LANGUAGE NamedFieldPuns #-}
+
 module Chapter2 (main) where
 
 -- Exercise 2-1
@@ -104,6 +106,32 @@ timeMachineDiscount (TimeMachine a b c d) discount =
 
 testTimeMachine = TimeMachine "" 5 Future 50.0
 
+-- Exercise 2-6
+
+ackermann m n
+  | m == 0 = n + 1
+  | m > 0 && n == 0 = ackermann (m - 1) 1
+  | m > 0 && n > 0 = ackermann (m - 1) (ackermann m n-1) 
+
+unzip' :: [(a,a)] -> ([a], [a])
+unzip' ((a,b):(c,d):_) = ([a,b], [c,d])
+
+data PersonR = PersonR { firstName :: String
+                       , lastName :: String
+		       } deriving (Show)
+
+
+-- Views
+greet :: PersonR -> String
+greet PersonR { firstName } = "yo! " <> firstName
+
+-- Exercise 2-7
+-- I had already written the TimeMachine type using Records. Please see above to see the answer
+
+timeMachineDiscount' :: TimeMachine -> Double -> TimeMachine
+timeMachineDiscount' t@(TimeMachine { price = p } ) discount = 
+  t { price = (p*discount) }
+
 main :: IO ()
 main = do
   putStrLn $ show rewrite1
@@ -123,4 +151,7 @@ main = do
   putStrLn $ show $ clientsEachGender testDataClient
   putStrLn $ show $ clientsEachGender testDataClient
   putStrLn $ show $ timeMachineDiscount testTimeMachine 0.5
-
+  putStrLn $ show $ ackermann 0 5 
+  putStrLn $ show $ unzip' [(1,2),(3,4)]
+  putStrLn $ show $ greet $ PersonR "wqsz7xn" "ab" 
+  putStrLn $ show $ timeMachineDiscount' testTimeMachine 0.5

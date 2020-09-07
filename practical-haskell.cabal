@@ -19,3 +19,4 @@ executable practical-haskell
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
   other-modules:       Chapter2 
+                     , Chapter3
