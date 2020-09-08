@@ -1,6 +1,6 @@
 {-# LANGUAGE NamedFieldPuns #-}
 
-module Chapter2 (main) where
+module Chapter2 where
 
 -- Exercise 2-1
 
@@ -97,6 +97,7 @@ testDataClient =
     , (Company "" 0 (Person "" "" $ Other "they") "")
     , (Company "" 0 (Person "" "" Male) "")
     , (Company "" 0 (Person "" "" Female) "")
+    , (GovOrg "only gov org!")
     , (Individual (Person "" "" Male) False)
     ]
 
